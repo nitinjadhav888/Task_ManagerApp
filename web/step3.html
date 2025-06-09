@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Step 3 - Preferences</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+      filter: blur(8px) brightness(0.6);
+      z-index: 0;
+    }
+    .container {
+      position: relative;
+      max-width: 450px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 12px;
+      padding: 30px 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      z-index: 1;
+      box-sizing: border-box;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 25px;
+      font-weight: 700;
+      letter-spacing: 1.1px;
+    }
+    select {
+      width: 100%;
+      padding: 14px 18px;
+      margin-top: 15px;
+      border: 1.5px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+      box-sizing: border-box;
+    }
+    select:focus {
+      border-color: #667eea;
+      outline: none;
+      box-shadow: 0 0 8px #667eea88;
+    }
+    .buttons-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 25px;
+    }
+    .buttons-row button {
+      width: 48%;
+      padding: 14px;
+      background-color: #667eea;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .buttons-row button:hover {
+      background-color: #5a67d8;
+    }
+  </style>
+  <script>
+    function validateStep3() {
+      const theme = document.forms["step3Form"]["theme"].value;
+      const layout = document.forms["step3Form"]["layout"].value;
+      if (!theme || !layout) {
+        alert("Please select all preferences");
+        return false;
+      }
+      return true;
+    }
+
+    function goBack() {
+      window.history.back();
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h2>Step 3: Preferences</h2>
+    <form name="step3Form" action="dashboard.jsp" method="get" onsubmit="return validateStep3()">
+      <select name="theme" required>
+        <option value="" disabled selected>Select Theme</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+      <select name="layout" required>
+        <option value="" disabled selected>Default Dashboard Layout</option>
+        <option value="grid">Grid</option>
+        <option value="list">List</option>
+      </select>
+      <div class="buttons-row">
+        <button type="button" onclick="goBack()">Back</button>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
